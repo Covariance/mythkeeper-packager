@@ -1,0 +1,5 @@
+# standard IDEA folderds
+.idea
+
+# output directory and files
+target
