@@ -72,6 +72,13 @@
             <artifactId>json</artifactId>
             <version>20200518</version>
         </dependency>
+
+        <!-- Library for comfortable file io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
 
 </project>
