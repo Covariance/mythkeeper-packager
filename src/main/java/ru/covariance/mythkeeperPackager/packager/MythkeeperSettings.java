@@ -1,4 +1,4 @@
-package ru.covariance.mythkeeperPackager;
+package ru.covariance.mythkeeperPackager.packager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
