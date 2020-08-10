@@ -1,128 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.covariance</groupId>
-    <artifactId>mythkeeper-packager</artifactId>
-    <version>1.0-alpha</version>
-    <packaging>jar</packaging>
+  <groupId>ru.covariance</groupId>
+  <artifactId>mythkeeper-packager</artifactId>
+  <version>1.0-alpha</version>
+  <packaging>jar</packaging>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
-    <build>
-        <plugins>
-            <!-- Maven compiler plugin for Java 11 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <release>11</release>
-                </configuration>
-            </plugin>
+  <build>
+    <plugins>
+      <!-- Maven compiler plugin for Java 11 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <release>11</release>
+        </configuration>
+      </plugin>
 
-            <!-- Plugin for automatic test running using `mvn test` command -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
-            </plugin>
+      <!-- Plugin for automatic test running using `mvn test` command -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M4</version>
+      </plugin>
 
-            <!-- Plugin for creating site using `mvn site` command -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.9.1</version>
-            </plugin>
+      <!-- Plugin for creating info reports-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
 
-            <!-- Plugin for automated code style check -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.1</version>
+      <!-- Plugin for creating site using `mvn site` command -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.9.1</version>
+      </plugin>
 
-                <configuration>
-                    <violationSeverity>warning</violationSeverity>
-                    <configLocation>google_checks.xml</configLocation>
-                    <enableFilesSummary>true</enableFilesSummary>
-                </configuration>
+      <!-- Plugin for automated code style check -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.1.1</version>
 
-                <executions>
-                    <execution>
-                        <phase>test</phase>
-                        <goals><goal>checkstyle</goal></goals>
-                    </execution>
-                </executions>
-            </plugin>
+        <configuration>
+          <violationSeverity>warning</violationSeverity>
+          <configLocation>google_checks.xml</configLocation>
+          <enableFilesSummary>true</enableFilesSummary>
+        </configuration>
 
-            <!-- Plugin for executing of project using `mvn exec` command -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <configuration>
-                    <mainClass>ru.covariance.jbintern.Main</mainClass>
-                </configuration>
-            </plugin>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals><goal>checkstyle</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
 
-            <!-- Plugin for making executable jar -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <finalName>
-                        Test
-                    </finalName>
-                    <outputDirectory>
-                        .
-                    </outputDirectory>
-                    <archive>
-                        <manifest>
-                            <!-- Jar file entry point -->
-                            <mainClass>ru.covariance.mythkeeperPackager.Test</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-            </plugin>
+      <!-- Plugin for executing of project using `mvn exec` command -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <configuration>
+          <mainClass>ru.covariance.jbintern.Main</mainClass>
+        </configuration>
+      </plugin>
 
-            <!-- Plugin for running JavaFX -->
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.3</version>
-                <configuration>
-                    <mainClass>com.example.App</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+      <!-- Plugin for making executable jar -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+          <finalName>
+            Test
+          </finalName>
+          <outputDirectory>
+            .
+          </outputDirectory>
+          <archive>
+            <manifest>
+              <!-- Jar file entry point -->
+              <mainClass>ru.covariance.mythkeeperpackager.Test</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
 
-    <dependencies>
-        <!-- Library to manipulate JSON objects -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20200518</version>
-        </dependency>
+      <!-- Plugin for running JavaFX -->
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.3</version>
+        <configuration>
+          <mainClass>com.example.App</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
-        <!-- Library for comfortable file io -->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.6</version>
-        </dependency>
+  <dependencies>
+    <!-- Library to manipulate JSON objects -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20200518</version>
+    </dependency>
 
-        <!-- Library for creating GUI -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>11.0.2</version>
-        </dependency>
-    </dependencies>
+    <!-- Library for comfortable file io -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.6</version>
+    </dependency>
+
+    <!-- Library for creating GUI -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>11.0.2</version>
+    </dependency>
+  </dependencies>
 
 </project>
