@@ -95,7 +95,7 @@ public class Packager {
   }
 
   /**
-   * Adds provided tags to the tag list
+   * Adds provided tags to the tag list.
    *
    * @param tags tags to add to the list
    * @return this object
@@ -107,7 +107,6 @@ public class Packager {
     this.tags.addAll(tags);
     return this;
   }
-
 
   /**
    * Recreates mythkeeper settings.
