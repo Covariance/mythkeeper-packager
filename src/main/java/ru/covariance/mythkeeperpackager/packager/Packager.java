@@ -39,7 +39,7 @@ public class Packager {
    * @param outputDirectory directory to create your asset package in
    * @param name            name of your asset package
    * @param version         version of your asset package
-   * @param author          author of your
+   * @param author          author of your asset package
    * @throws IOException if it's unable to create output directory or if it's not a directory
    */
   public Packager(final File outputDirectory, String name, String version,
