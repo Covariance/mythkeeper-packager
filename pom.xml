@@ -61,40 +61,11 @@
         <executions>
           <execution>
             <phase>test</phase>
-            <goals><goal>checkstyle</goal></goals>
+            <goals>
+              <goal>check</goal>
+            </goals>
           </execution>
         </executions>
-      </plugin>
-
-      <!-- Plugin for executing of project using `mvn exec` command -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>1.6.0</version>
-        <configuration>
-          <mainClass>ru.covariance.jbintern.Main</mainClass>
-        </configuration>
-      </plugin>
-
-      <!-- Plugin for making executable jar -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.1.2</version>
-        <configuration>
-          <finalName>
-            Test
-          </finalName>
-          <outputDirectory>
-            .
-          </outputDirectory>
-          <archive>
-            <manifest>
-              <!-- Jar file entry point -->
-              <mainClass>ru.covariance.mythkeeperpackager.Test</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
       </plugin>
 
       <!-- Plugin for running JavaFX -->
