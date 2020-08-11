@@ -94,6 +94,19 @@ public class Packager {
     return this;
   }
 
+  /**
+   * Adds provided tags to the tag list
+   *
+   * @param tags tags to add to the list
+   * @return this object
+   */
+  public Packager addTags(List<String> tags) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.addAll(tags);
+    return this;
+  }
 
   /**
    * Recreates mythkeeper settings.
