@@ -97,18 +97,6 @@
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.3</version>
-
-        <configuration>
-          <jmodsPath>target/dependency</jmodsPath>
-          <stripDebug>true</stripDebug>
-          <noHeaderFiles>true</noHeaderFiles>
-          <noManPages>true</noManPages>
-          <launcher>launch</launcher>
-          <jlinkImageName>testAppImage</jlinkImageName>
-          <jlinkZipName>testAppZip</jlinkZipName>
-          <mainClass>ru.covariance.mythkeeperpackager.app.Launcher</mainClass>
-          <compress>2</compress>
-        </configuration>
       </plugin>
     </plugins>
   </build>
