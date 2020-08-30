@@ -11,7 +11,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <javaVersion>11</javaVersion>
+    <javaVersion>14</javaVersion>
     <javaFxVersion>14.0.2</javaFxVersion>
   </properties>
 
@@ -25,53 +25,6 @@
         <configuration>
           <release>${javaVersion}</release>
         </configuration>
-      </plugin>
-
-      <!-- Plugin for adding module info in automatic modules -->
-      <plugin>
-        <groupId>org.moditect</groupId>
-        <artifactId>moditect-maven-plugin</artifactId>
-        <version>1.0.0.RC1</version>
-        <executions>
-          <execution>
-            <id>add-module-infos</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>add-module-info</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${project.basedir}/modules</outputDirectory>
-              <overwriteExistingFiles>true</overwriteExistingFiles>
-              <modules>
-                <module>
-                  <artifact>
-                    <groupId>org.json</groupId>
-                    <artifactId>json</artifactId>
-                    <version>20200518</version>
-                  </artifact>
-                  <moduleInfoSource>
-                    module org.json {
-                      exports org.json;
-                    }
-                  </moduleInfoSource>
-                </module>
-
-                <module>
-                  <artifact>
-                    <groupId>commons-io</groupId>
-                    <artifactId>commons-io</artifactId>
-                    <version>2.6</version>
-                  </artifact>
-                  <moduleInfoSource>
-                    module org.apache.commons.io {
-                      exports org.apache.commons.io;
-                    }
-                  </moduleInfoSource>
-                </module>
-              </modules>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
 
       <!-- Plugin for creating executable JAR -->
@@ -146,30 +99,16 @@
         <version>0.0.3</version>
 
         <configuration>
+          <jmodsPath>target/dependency</jmodsPath>
+          <stripDebug>true</stripDebug>
+          <noHeaderFiles>true</noHeaderFiles>
+          <noManPages>true</noManPages>
+          <launcher>launch</launcher>
+          <jlinkImageName>testAppImage</jlinkImageName>
+          <jlinkZipName>testAppZip</jlinkZipName>
           <mainClass>ru.covariance.mythkeeperpackager.app.Launcher</mainClass>
           <compress>2</compress>
         </configuration>
-
-        <executions>
-          <execution>
-            <id>run-application</id>
-            <phase>install</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>jlink-create</id>
-            <phase>package</phase>
-            <goals>
-              <goal>jlink</goal>
-            </goals>
-            <configuration>
-
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
@@ -180,8 +119,6 @@
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20200518</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/modules/json-20200518.jar</systemPath>
     </dependency>
 
     <!-- Library for comfortable file io -->
@@ -189,8 +126,6 @@
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.6</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/modules/commons-io-2.6.jar</systemPath>
     </dependency>
 
     <!-- JavaFX dependencies -->
