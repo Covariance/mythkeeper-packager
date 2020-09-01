@@ -1,7 +1,7 @@
 # **MythKeeper** Packager
 Application for making asset bundles for **MythKeeper** asset manager.
 
-## Currently supported functionality:
+## Current supported functionality:
 
 - Adding **MythKeeper** support into already created asset packs
 - Creating asset packs from image sets
