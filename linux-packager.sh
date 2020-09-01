@@ -77,4 +77,5 @@ $JAVA14/bin/jpackage \
   --dest target/package \
   --runtime-image target/linked \
   --module ru.covariance.mythkeeperpackager/ru.covariance.mythkeeperpackager.app.Launcher \
-  --linux-shortcut
+  --linux-shortcut \
+  --linux-deb-maintainer covariancemomentum@gmail.com
