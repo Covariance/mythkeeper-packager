@@ -1,0 +1,14 @@
+.page-button {
+    -fx-background-color: transparent;
+    -fx-border-radius: 0;
+}
+
+.page-button:hover {
+    -fx-background-color: lightsteelblue;
+    -fx-border-radius: 0;
+}
+
+.page-button:pressed {
+    -fx-background-color: lightslategray;
+    -fx-border-radius: 0;
+}

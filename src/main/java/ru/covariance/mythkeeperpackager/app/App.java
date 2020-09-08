@@ -15,7 +15,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage primaryStage) throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("/fxml/packager.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/fxml/main.fxml"));
     primaryStage.setTitle("MythkeeperPackager");
     primaryStage.setScene(new Scene(root));
     primaryStage.show();

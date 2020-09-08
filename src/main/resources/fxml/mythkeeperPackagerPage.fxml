@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <BorderPane prefHeight="600.0" prefWidth="600.0">
+         <center>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="э&#10;т&#10;о&#10;&#10;о&#10;ч&#10;е&#10;н&#10;ь&#10;&#10;д&#10;л&#10;и&#10;н&#10;н&#10;ы&#10;й&#10;&#10;т&#10;е&#10;к&#10;с&#10;т&#10;!" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+         </center>
+      </BorderPane>
+   </content>
+</ScrollPane>

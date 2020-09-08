@@ -1,11 +1,18 @@
 package ru.covariance.mythkeeperpackager.app;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 public class Controller {
 
@@ -16,34 +23,66 @@ public class Controller {
   private URL location;
 
   @FXML
-  private TextField packageName;
+  private AnchorPane basePane;
 
   @FXML
-  private TextField versionTextField;
+  private BorderPane corePane;
 
   @FXML
-  private TextField authorTextField;
+  private Button homePageButton;
 
   @FXML
-  private Button submitButton;
+  private Button assetPackagerPageButton;
 
   @FXML
-  void onSubmitButton(ActionEvent event) {
-    System.out.println("Package name: " + packageName.getText());
-    System.out.println("Version: " + versionTextField.getText());
-    System.out.println("Author: " + authorTextField.getText());
+  private Button mythkeeperPackagerPageButton;
+
+  @FXML
+  private BorderPane homePagePane;
+
+  private static final List<String> pageNames = List.of(
+      "mythkeeperPackagerPage",
+      "assetPackagerPage"
+  );
+  private static final Map<String, Parent> pages = new HashMap<>();
+
+  private Parent openPage(String page) {
+    try {
+      return FXMLLoader.load(getClass().getResource("/fxml/" + page + ".fxml"));
+    } catch (IOException e) {
+      return null;
+    }
+  }
+
+  private void setPage(String pageName) {
+    Parent page = pages.get(pageName);
+    if (page == null) {
+      corePane.setCenter(homePagePane);
+    } else {
+      corePane.setCenter(page);
+    }
+  }
+
+  @FXML
+  void onAssetPackagerPageButtonClicked(MouseEvent event) {
+    setPage("assetPackagerPage");
+  }
+
+  @FXML
+  void onHomePageButtonClicked(MouseEvent event) {
+    corePane.setCenter(homePagePane);
+  }
+
+  @FXML
+  void onMythkeeperPackagerPageButtonClicked(MouseEvent event) {
+    setPage("mythkeeperPackagerPage");
   }
 
   @FXML
   void initialize() {
-    assert packageName != null
-        : "fx:id=\"packageNameId\" was not injected: check your FXML file 'packager.fxml'.";
-    assert versionTextField != null
-        : "fx:id=\"versionTextField\" was not injected: check your FXML file 'packager.fxml'.";
-    assert authorTextField != null
-        : "fx:id=\"authorTextField\" was not injected: check your FXML file 'packager.fxml'.";
-    assert submitButton != null
-        : "fx:id=\"submitButton\" was not injected: check your FXML file 'packager.fxml'.";
-
+    for (String name : pageNames) {
+      Parent page = openPage(name);
+      pages.putIfAbsent(name, page);
+    }
   }
 }
