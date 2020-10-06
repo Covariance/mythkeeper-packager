@@ -57,15 +57,6 @@
           <configLocation>google_checks.xml</configLocation>
           <enableFilesSummary>true</enableFilesSummary>
         </configuration>
-
-        <executions>
-          <execution>
-            <phase>test</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <!-- Plugin for running JavaFX -->
