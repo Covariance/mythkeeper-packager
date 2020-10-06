@@ -24,6 +24,9 @@ import ru.covariance.mythkeeperpackager.packager.License;
 
 public class MythkeeperPackagerController {
 
+  /**
+   *  Constructor that fills essential fields of Mythkeeper packager page controller.
+   */
   public MythkeeperPackagerController() {
     // region LICENSE_MENUS FILLING
     // region NONE LICENSE
@@ -89,7 +92,7 @@ public class MythkeeperPackagerController {
     externalNode.getChildren().addAll(externalLicenseNote, externalLicense);
     // endregion
 
-    LICENSE_MENUS = Map.of(
+    licenseMenus = Map.of(
         "None", noneLicenseNode,
         "Predefined", predefinedNode,
         "Local file", localNode,
@@ -117,7 +120,7 @@ public class MythkeeperPackagerController {
     commercialUrlNode.getChildren().addAll(commercialUrlHint, commercialUrl);
     // endregion
 
-    COMMERCIAL_MENUS = Map.of(
+    commercialMenus = Map.of(
         Boolean.FALSE, noneCommercialNode,
         Boolean.TRUE, commercialUrlNode
     );
@@ -216,16 +219,16 @@ public class MythkeeperPackagerController {
     }
   }
 
-  private final Map<String, Node> LICENSE_MENUS;
+  private final Map<String, Node> licenseMenus;
 
   void changeLicenseMenu(String val) {
-    licenseMenuPane.setLeft(LICENSE_MENUS.get(val));
+    licenseMenuPane.setLeft(licenseMenus.get(val));
   }
 
-  private final Map<Boolean, Node> COMMERCIAL_MENUS;
+  private final Map<Boolean, Node> commercialMenus;
 
   void changeCommercialMenu(Boolean isCommercial) {
-    commercialUseMenuPane.setLeft(COMMERCIAL_MENUS.get(isCommercial));
+    commercialUseMenuPane.setLeft(commercialMenus.get(isCommercial));
   }
 
   @FXML
