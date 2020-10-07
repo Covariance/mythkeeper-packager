@@ -6,11 +6,12 @@
 
   <groupId>ru.covariance</groupId>
   <artifactId>mythkeeper-packager</artifactId>
-  <version>1.0-alpha</version>
-  <packaging>jar</packaging>
+  <version>1.0-beta</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javaVersion>14</javaVersion>
+    <javaFxVersion>14.0.2</javaFxVersion>
   </properties>
 
   <build>
@@ -21,29 +22,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
         <configuration>
-          <release>11</release>
+          <release>${javaVersion}</release>
         </configuration>
-      </plugin>
-
-      <!-- Plugin for automatic test running using `mvn test` command -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M4</version>
-      </plugin>
-
-      <!-- Plugin for creating info reports-->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.1.0</version>
-      </plugin>
-
-      <!-- Plugin for creating site using `mvn site` command -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>3.9.1</version>
       </plugin>
 
       <!-- Plugin for automated code style check -->
@@ -64,8 +44,9 @@
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.3</version>
+
         <configuration>
-          <mainClass>com.example.App</mainClass>
+          <mainClass>ru.covariance.mythkeeperpackager.app.Launcher</mainClass>
         </configuration>
       </plugin>
     </plugins>
@@ -86,11 +67,29 @@
       <version>2.6</version>
     </dependency>
 
-    <!-- Library for creating GUI -->
+    <!-- JavaFX dependencies -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-base</artifactId>
+      <version>${javaFxVersion}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>11.0.2</version>
+      <version>${javaFxVersion}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-graphics</artifactId>
+      <version>${javaFxVersion}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>${javaFxVersion}</version>
     </dependency>
   </dependencies>
 

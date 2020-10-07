@@ -42,7 +42,7 @@ public class WonderdraftSymbolsPackager {
       symbols.put(name, cur);
     }
 
-    File result = new File(dir.getPath() + File.pathSeparator + ".wonderdraft_symbols");
+    File result = new File(dir.getPath() + File.separator + ".wonderdraft_symbols");
     //noinspection ResultOfMethodCallIgnored
     result.createNewFile();
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(result, false))) {

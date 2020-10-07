@@ -1,5 +1,6 @@
 package ru.covariance.mythkeeperpackager.packager;
 
+import java.util.List;
 import org.json.JSONObject;
 
 /**
@@ -33,6 +34,15 @@ public class License {
     return this;
   }
 
+  public static final List<String> SUPPORTED_LICENSES = List.of(
+      "CC BY 4.0",
+      "CC BY-SA 4.0",
+      "CC BY-ND 4.0",
+      "CC BY-NC 4.0",
+      "CC BY-NC-SA 4.0",
+      "CC BY-NC-ND 4.0"
+  );
+
   /**
    * Method that creates a JSON representation of Author.
    *
@@ -54,14 +64,7 @@ public class License {
           "LocalFile and ExternalLink cannot be set true at the same time");
     }
 
-    if (!license.equals("CC BY 4.0")
-        && !license.equals("CC BY-SA 4.0")
-        && !license.equals("CC BY-ND 4.0")
-        && !license.equals("CC BY-NC 4.0")
-        && !license.equals("CC BY-NC-SA 4.0")
-        && !license.equals("CC BY-NC-ND 4.0")
-        && !localFile
-        && !externalLink) {
+    if (!SUPPORTED_LICENSES.contains(license) && !localFile && !externalLink) {
       throw new IllegalStateException("License set to true but no supported license, "
           + "local file or external link provided");
     }

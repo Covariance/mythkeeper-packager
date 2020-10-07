@@ -30,7 +30,7 @@ public class Packager {
   List<String> tags = new ArrayList<>();
 
   private File derivedDirectory(String derive) {
-    return new File(outputDirectory.getPath() + File.pathSeparator + derive);
+    return new File(outputDirectory.getPath() + File.separator + derive);
   }
 
   /**
@@ -39,7 +39,7 @@ public class Packager {
    * @param outputDirectory directory to create your asset package in
    * @param name            name of your asset package
    * @param version         version of your asset package
-   * @param author          author of your
+   * @param author          author of your asset package
    * @throws IOException if it's unable to create output directory or if it's not a directory
    */
   public Packager(final File outputDirectory, String name, String version,
@@ -50,7 +50,7 @@ public class Packager {
     this.author = author;
 
     Utils.safeDirectoryCreate(outputDirectory);
-    Utils.safeDirectoryCreate(derivedDirectory("metafiles" + File.pathSeparator + "gallery"));
+    Utils.safeDirectoryCreate(derivedDirectory("metafiles" + File.separator + "gallery"));
 
     this.reset();
   }
@@ -134,7 +134,7 @@ public class Packager {
     }
 
     File outputDir = derivedDirectory(
-        "sprites" + File.pathSeparator + "symbols" + File.pathSeparator + inputDir.getName());
+        "sprites" + File.separator + "symbols" + File.separator + inputDir.getName());
 
     Utils.safeDirectoryCreate(outputDir);
 
@@ -146,7 +146,7 @@ public class Packager {
     }
 
     for (File image : images) {
-      FileUtils.copyFile(image, new File(outputDir + File.pathSeparator + image.getName()));
+      FileUtils.copyFile(image, new File(outputDir + File.separator + image.getName()));
     }
 
     WonderdraftSymbolsPackager.packageDirectory(outputDir);
