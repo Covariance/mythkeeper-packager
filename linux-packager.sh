@@ -37,18 +37,18 @@ do
 
   echo Processing ${descriptors[$i]} in ${jarNames[$i]}.jar
 
-  $JAVA14/bin/jdeps \
+  $JAVA_HOME/bin/jdeps \
     --module-path target/dependency \
     --generate-module-info target/module-info \
     target/dependency/${jarNames[$i]}.jar
 
-  $JAVA14/bin/javac \
+  $JAVA_HOME/bin/javac \
     --module-path target/dependency \
     -d target/module-extensions/${descriptors[$i]} \
     --patch-module ${descriptors[$i]}=target/dependency/${jarNames[$i]}.jar \
     target/module-info/${descriptors[$i]}/module-info.java
 
-  $JAVA14/bin/jar \
+  $JAVA_HOME/bin/jar \
     uf target/dependency/${jarNames[$i]}.jar \
     -C target/module-extensions/${descriptors[$i]} module-info.class
 
@@ -56,7 +56,7 @@ done
 
 echo ">> LINKING"
 
-$JAVA14/bin/jlink \
+$JAVA_HOME/bin/jlink \
   --module-path target/classes:target/dependency \
   --add-modules ru.covariance.mythkeeperpackager \
   --launcher launch=ru.covariance.mythkeeperpackager/ru.covariance.mythkeeperpackager.app.Launcher \
@@ -72,7 +72,7 @@ du -h target/linked
 
 echo ">> PACKAGING"
 
-$JAVA14/bin/jpackage \
+$JAVA_HOME/bin/jpackage \
   --name mythkeeper-packager \
   --dest target/package \
   --runtime-image target/linked \
