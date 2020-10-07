@@ -27,8 +27,8 @@
                   </Text>
                   <HBox>
                      <children>
-                        <TextField fx:id="outputPathTextField" prefHeight="26.0" prefWidth="400.0" promptText="Directory path" />
-                        <Button fx:id="outputPathChooser" mnemonicParsing="false" onMouseClicked="#onOutputPathChooserClicked" prefHeight="26.0" prefWidth="100.0" text="Choose...." />
+                        <TextField fx:id="outputPathTextField" prefHeight="26.0" prefWidth="400.0" promptText="Path to output directory" />
+                        <Button fx:id="outputPathChooser" mnemonicParsing="false" onMouseClicked="#onOutputPathChooserClicked" prefHeight="26.0" prefWidth="100.0" text="Choose..." />
                      </children>
                   </HBox>
                   <HBox spacing="10.0">
@@ -131,7 +131,7 @@
                               <VBox fx:id="tagListVBox" spacing="10.0" />
                               <HBox>
                                  <children>
-                                    <TextField fx:id="newTagTestField" prefHeight="26.0" prefWidth="449.0" promptText="New tag" />
+                                    <TextField fx:id="newTagTextField" prefHeight="26.0" prefWidth="449.0" promptText="New tag" />
                                     <Button fx:id="addNewTagButton" mnemonicParsing="false" onMouseClicked="#onAddNewTagButtonClicked" prefHeight="26.0" prefWidth="26.0" text="+" />
                                  </children>
                               </HBox>
@@ -139,6 +139,19 @@
                         </VBox>
                      </content>
                   </TitledPane>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Choose assets to include in your package:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+                  <VBox fx:id="assetListBox" spacing="10.0" />
+                  <HBox>
+                     <children>
+                        <TextField fx:id="assetPathTextField" prefHeight="26.0" prefWidth="371.0" promptText="Path to asset directory" />
+                        <Button fx:id="assetListDirectoryChooser" mnemonicParsing="false" onMouseClicked="#onAssetListDirectoryChooserClicked" prefHeight="26.0" prefWidth="100.0" text="Choose..." />
+                        <Button fx:id="addAssetDirectoryToList" mnemonicParsing="false" onMouseClicked="#onAddAssetDirectoryToListClicked" prefHeight="26.0" prefWidth="26.0" text="+" />
+                     </children>
+                  </HBox>
                   <BorderPane>
                      <center>
                         <Button fx:id="packageButton" mnemonicParsing="false" onMouseClicked="#onPackageButtonClicked" text="Package" BorderPane.alignment="CENTER" />
@@ -153,7 +166,6 @@
                         </Text>
                      </center>
                   </BorderPane>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" />
                </children>
             </VBox>
          </children>

@@ -38,7 +38,7 @@ public class MythkeeperSettings {
       List<String> tags,
       String description) throws IOException {
     Utils.safeDirectoryCreate(dir);
-    File settings = new File(dir.getPath() + "\\mythKeeperSettings.json");
+    File settings = new File(dir.getPath() + File.separator + "mythKeeperSettings.json");
     //noinspection ResultOfMethodCallIgnored
     settings.createNewFile();
 

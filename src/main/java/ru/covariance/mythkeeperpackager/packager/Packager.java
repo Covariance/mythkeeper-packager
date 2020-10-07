@@ -30,7 +30,7 @@ public class Packager {
   List<String> tags = new ArrayList<>();
 
   private File derivedDirectory(String derive) {
-    return new File(outputDirectory.getPath() + File.pathSeparator + derive);
+    return new File(outputDirectory.getPath() + File.separator + derive);
   }
 
   /**
@@ -50,7 +50,7 @@ public class Packager {
     this.author = author;
 
     Utils.safeDirectoryCreate(outputDirectory);
-    Utils.safeDirectoryCreate(derivedDirectory("metafiles" + File.pathSeparator + "gallery"));
+    Utils.safeDirectoryCreate(derivedDirectory("metafiles" + File.separator + "gallery"));
 
     this.reset();
   }
@@ -134,7 +134,7 @@ public class Packager {
     }
 
     File outputDir = derivedDirectory(
-        "sprites" + File.pathSeparator + "symbols" + File.pathSeparator + inputDir.getName());
+        "sprites" + File.separator + "symbols" + File.separator + inputDir.getName());
 
     Utils.safeDirectoryCreate(outputDir);
 
@@ -146,7 +146,7 @@ public class Packager {
     }
 
     for (File image : images) {
-      FileUtils.copyFile(image, new File(outputDir + File.pathSeparator + image.getName()));
+      FileUtils.copyFile(image, new File(outputDir + File.separator + image.getName()));
     }
 
     WonderdraftSymbolsPackager.packageDirectory(outputDir);

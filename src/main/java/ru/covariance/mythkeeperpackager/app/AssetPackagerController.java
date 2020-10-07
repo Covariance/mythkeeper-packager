@@ -45,15 +45,12 @@ public class AssetPackagerController {
 
   @FXML
   void onPathChooserClicked(MouseEvent event) {
-    DirectoryChooser dirChooser = new DirectoryChooser();
+    File selectedDir = new DirectoryChooser().showDialog(null);
 
-    File selectedDir = dirChooser.showDialog(null);
-
-    if (selectedDir != null) {
-      directoryPathTextField.setText(selectedDir.getAbsolutePath());
-    } else {
-      resultMessage.setText("Something went wrong.");
-    }
+    directoryPathTextField.setText(selectedDir == null
+        ? "Cannot open chosen directory"
+        : selectedDir.getAbsolutePath()
+    );
   }
 
   @FXML
