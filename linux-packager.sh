@@ -26,8 +26,8 @@ echo ">> REMOVING EMPTY DEPENDENCIES"
 
 for (( i=0; i<${#unusedJars[@]}; i++ ))
 do
-  echo removing ${unusedJars[$i]}
-  rm target/dependency/${unusedJars[$i]}.jar
+  echo removing "${unusedJars[$i]}"
+  rm target/dependency/"${unusedJars[$i]}".jar
 done
 
 echo ">> COMPILING MODULE INFOS"
@@ -35,28 +35,28 @@ echo ">> COMPILING MODULE INFOS"
 for (( i=0; i<${#jarNames[@]}; i++ ))
 do
 
-  echo Processing ${descriptors[$i]} in ${jarNames[$i]}.jar
+  echo Processing "${descriptors[$i]}" in "${jarNames[$i]}".jar
 
-  $JAVA_HOME/bin/jdeps \
+  "$JAVA_HOME"/bin/jdeps \
     --module-path target/dependency \
     --generate-module-info target/module-info \
-    target/dependency/${jarNames[$i]}.jar
+    target/dependency/"${jarNames[$i]}".jar
 
-  $JAVA_HOME/bin/javac \
+  "$JAVA_HOME"/bin/javac \
     --module-path target/dependency \
-    -d target/module-extensions/${descriptors[$i]} \
-    --patch-module ${descriptors[$i]}=target/dependency/${jarNames[$i]}.jar \
-    target/module-info/${descriptors[$i]}/module-info.java
+    -d target/module-extensions/"${descriptors[$i]}" \
+    --patch-module "${descriptors[$i]}"=target/dependency/"${jarNames[$i]}".jar \
+    target/module-info/"${descriptors[$i]}"/module-info.java
 
-  $JAVA_HOME/bin/jar \
-    uf target/dependency/${jarNames[$i]}.jar \
-    -C target/module-extensions/${descriptors[$i]} module-info.class
+  "$JAVA_HOME"/bin/jar \
+    uf target/dependency/"${jarNames[$i]}".jar \
+    -C target/module-extensions/"${descriptors[$i]}" module-info.class
 
 done
 
 echo ">> LINKING"
 
-$JAVA_HOME/bin/jlink \
+"$JAVA_HOME"/bin/jlink \
   --module-path target/classes:target/dependency \
   --add-modules ru.covariance.mythkeeperpackager \
   --launcher launch=ru.covariance.mythkeeperpackager/ru.covariance.mythkeeperpackager.app.Launcher \
@@ -72,7 +72,7 @@ du -h target/linked
 
 echo ">> PACKAGING"
 
-$JAVA_HOME/bin/jpackage \
+"$JAVA_HOME"/bin/jpackage \
   --name mythkeeper-packager \
   --dest target/package \
   --runtime-image target/linked \
