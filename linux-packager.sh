@@ -66,10 +66,6 @@ echo ">> LINKING"
   --no-header-files \
   --no-man-pages
 
-echo ">> SPACE USAGE"
-
-du -h target/linked
-
 echo ">> PACKAGING"
 
 "$JAVA_HOME"/bin/jpackage \
