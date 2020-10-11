@@ -1,0 +1,28 @@
+name: Linux Packaging Tool
+
+on:
+  push:
+    branches:
+      - 'release'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copying the repository
+        uses: actions/checkout@v2
+        with:
+          ref: 'release'
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14.0.2
+          architecture: x64
+      - name: Package app
+        run: linux-packager.sh
+      - name: Publish artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: mythkeeper-packager-linux
+          path: target/package/mythkeeper-packager-1.0.0.deb

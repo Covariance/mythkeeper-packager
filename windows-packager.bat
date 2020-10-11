@@ -8,9 +8,19 @@ set descriptors[1]=org.json
 
 set unusedJars="javafx-base-14.0.2" "javafx-controls-14.0.2" "javafx-fxml-14.0.2" "javafx-graphics-14.0.2"
 
+echo // CLEANING
+
+call mvn --file pom.xml clean
+
+echo // INSTALLING WIX
+
+call mkdir target\wix
+call powershell -Command "Invoke-WebRequest https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile target\wix\wix.exe"
+call target\wix\wix.exe /install /quiet /norestart
+
 echo // COMPILING
 
-call mvn --file pom.xml clean dependency:copy-dependencies compile
+call mvn --file pom.xml dependency:copy-dependencies compile
 
 echo // REMOVING UNUSED DEPS
 
@@ -56,6 +66,7 @@ echo // PACKAGING
 
 call "%JAVA_HOME%bin\jpackage" ^
   --name mythkeeper-packager ^
+  --app-version 1.0.0 ^
   --dest target\package ^
   --runtime-image target\linked ^
   --module ru.covariance.mythkeeperpackager/ru.covariance.mythkeeperpackager.app.Launcher ^

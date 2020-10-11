@@ -70,6 +70,7 @@ echo ">> PACKAGING"
 
 "$JAVA_HOME"/bin/jpackage \
   --name mythkeeper-packager \
+  --app-version 1.0.0 \
   --dest target/package \
   --runtime-image target/linked \
   --module ru.covariance.mythkeeperpackager/ru.covariance.mythkeeperpackager.app.Launcher \
