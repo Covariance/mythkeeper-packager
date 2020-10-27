@@ -1,0 +1,65 @@
+name: Packaging Tool
+
+on:
+  push:
+    branches:
+      - 'release'
+
+jobs:
+  linux-packager:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copying the repository
+        uses: actions/checkout@v2
+        with:
+          ref: 'release'
+
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14.0.2
+          architecture: x64
+
+      - name: Package app
+        run: /bin/bash linux-packager.sh
+
+      - name: Publish artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: mythkeeper-packager-linux-${{ github.run_number }}
+          path: target/package/*.deb
+
+  release_maker:
+    needs: [ linux-packager ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create release
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+            tag_name: ${{ github.ref }}
+            release_name: Release ${{ github.run_number }}
+            body: |
+              Release version ${{ github.run_number }}
+              Changes: TODO
+            draft: false
+            prerelease: false
+
+      - name: Download Linux package
+        uses: actions/download-artifact@v2
+        with:
+          name: mythkeeper-packager-linux-${{ github.run_number }}
+
+      - name: Upload Linux package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./mythkeeper-packager-linux-${{ github.run_number }}.deb
+          asset_name: mythkeeper-packager-linux-${{ github.run_number }}.deb
+          asset_content_type: application/deb
