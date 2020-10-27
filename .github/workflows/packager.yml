@@ -40,14 +40,14 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: ${{ github.ref }}
-            release_name: Release ${{ github.run_number }}
-            body: |
-              Release version ${{ github.run_number }}
-              Changes: TODO
-            draft: false
-            prerelease: false
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.run_number }}
+          body: |
+            Release version ${{ github.run_number }}
+            Changes: TODO
+          draft: false
+          prerelease: false
 
       - name: Download Linux package
         uses: actions/download-artifact@v2
