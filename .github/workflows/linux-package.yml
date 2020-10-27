@@ -20,7 +20,7 @@ jobs:
           java-version: 14.0.2
           architecture: x64
       - name: Package app
-        run: sh linux-packager.sh
+        run: /bin/bash linux-packager.sh
       - name: Publish artifact
         uses: actions/upload-artifact@v2
         with:

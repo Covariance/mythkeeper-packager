@@ -5,7 +5,7 @@ jarNames=( \
 
 descriptors=( \
   "org.apache.commons.io" \
-  "org.json"
+  "org.json" \
 )
 
 unusedJars=( \
