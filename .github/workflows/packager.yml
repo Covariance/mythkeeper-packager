@@ -27,7 +27,7 @@ jobs:
       - name: Publish artifact
         uses: actions/upload-artifact@v2
         with:
-          name: mythkeeper-packager-linux-${{ github.run_number }}.deb
+          name: mythkeeper-packager-linux-${{ github.run_number }}
           path: target/package/*.deb
 
   release_maker:
@@ -53,7 +53,7 @@ jobs:
         id: download-linux-artifact
         uses: actions/download-artifact@v2
         with:
-          name: mythkeeper-packager-linux-${{ github.run_number }}.deb
+          name: mythkeeper-packager-linux-${{ github.run_number }}
           path: ./
 
       - name: Upload Linux package
@@ -63,5 +63,5 @@ jobs:
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
           asset_path: mythkeeper-packager-linux-${{ github.run_number }}.deb
-          asset_name: mythkeeper-packager-linux-${{ github.run_number }}.deb
+          asset_name: mythkeeper-packager-linux-${{ github.run_number }}
           asset_content_type: application/deb
