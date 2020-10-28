@@ -61,6 +61,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ${{ steps.download-linux-artifact.outputs.download-path }}/mythkeeper-packager-linux-${{ github.run_number }}.deb
+          asset_path: ${{ steps.download-linux-artifact.outputs.download-path }}
           asset_name: mythkeeper-packager-linux-${{ github.run_number }}.deb
           asset_content_type: application/deb
