@@ -56,8 +56,8 @@ jobs:
           name: mythkeeper-packager-linux-${{ github.run_number }}
           path: ./
 
-      - name: wtf happens
-        run: ls -la
+      - name: Renaming Linux package
+        run: mv *.deb mythkeeper-packager-linux-${{ github.run_number }}.deb
 
       - name: Upload Linux package
         uses: actions/upload-release-asset@v1
