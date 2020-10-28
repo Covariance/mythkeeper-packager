@@ -54,9 +54,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: mythkeeper-packager-linux-${{ github.run_number }}.deb
-
-      - name: Change Permissions
-        run: chmod +rwx ${{ steps.download-linux-artifact.outputs.download-path }}
+          path: ./
 
       - name: Upload Linux package
         uses: actions/upload-release-asset@v1
@@ -64,6 +62,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ${{ steps.download-linux-artifact.outputs.download-path }}
+          asset_path: mythkeeper-packager-linux-${{ github.run_number }}.deb
           asset_name: mythkeeper-packager-linux-${{ github.run_number }}.deb
           asset_content_type: application/deb
