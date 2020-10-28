@@ -27,7 +27,7 @@ jobs:
       - name: Publish artifact
         uses: actions/upload-artifact@v2
         with:
-          name: mythkeeper-packager-linux-${{ github.run_number }}
+          name: mythkeeper-packager-linux-${{ github.run_number }}.deb
           path: target/package/*.deb
 
   release_maker:
@@ -41,7 +41,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
+          tag_name: r${{ github.run_number }}
           release_name: Release ${{ github.run_number }}
           body: |
             Release version ${{ github.run_number }}
