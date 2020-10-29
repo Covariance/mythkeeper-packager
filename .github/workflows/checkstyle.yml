@@ -41,7 +41,12 @@ jobs:
         languages: ${{ matrix.language }}
 
     - name: Build
-      run: mvn -B compile --file pom.xml
+      run: |
+        mvn --file pom.xml \
+        clean \
+        dependency:copy-dependencies \
+        compile
+
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
