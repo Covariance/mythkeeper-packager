@@ -40,13 +40,14 @@ jobs:
       with:
         languages: ${{ matrix.language }}
 
-    - name: Build
-      run: |
-        mvn --file pom.xml \
-        clean \
-        dependency:copy-dependencies \
-        compile
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 14.0.2
+        architecture: x64
 
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
