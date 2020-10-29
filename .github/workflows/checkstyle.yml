@@ -40,12 +40,10 @@ jobs:
       with:
         languages: ${{ matrix.language }}
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
-
-    #- run: |
-    #   make bootstrap
-    #   make release
+    - name: Build
+      run: |
+        make bootstrap
+        make release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
